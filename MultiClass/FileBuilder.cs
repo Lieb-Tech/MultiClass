@@ -76,7 +76,7 @@ namespace MultiClass
                     File.WriteAllText(testDataPath, "ID\tFeed\tSiteSection\tTitle\tDescription\r\n");
                     File.AppendAllLines(testDataPath, vals
                         .Take(testAmount)
-                        .Select(v => $"{v.id}\t{v.partionKey}\t{v.siteSection}\t{v.title}\t{v.description}")
+                        .Select(v => $"{v.id}\t{v.partionKey}\t{v.siteSection}\t{v.title.Replace('\t', ' ')}\t{v.description.Replace('\t', ' ')}")
                         .ToList());
                 }
 
@@ -87,7 +87,7 @@ namespace MultiClass
                     File.AppendAllLines(testDataPath, vals
                         .Skip(testAmount)
                         .Take(evaluateAmount)
-                        .Select(v => $"{v.id}\t{v.partionKey}\t{v.siteSection}\t{v.title}\t{v.description}")
+                        .Select(v => $"{v.id}\t{v.partionKey}\t{v.siteSection}\t{v.title.Replace('\t', ' ')}\t{v.description.Replace('\t', ' ')}")
                         .ToList());
                 }
 
