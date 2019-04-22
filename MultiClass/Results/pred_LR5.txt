@@ -1,0 +1,6 @@
+***************************
+Prediction results: LR5
+***************************
+Test set size: 1000
+Total correct: 708
+Perc correct : 70.8%

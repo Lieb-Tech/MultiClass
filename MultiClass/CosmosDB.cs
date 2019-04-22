@@ -55,10 +55,12 @@ namespace MultiClass
                 qryOptions);
         }
 
-        public IQueryable<T> GetDocumentQuery<T>(string collection)
+        public IQueryable<T> GetDocumentQuery<T>(string collection, FeedOptions qryOptions = null)
         {
-            FeedOptions queryOptions = new FeedOptions { MaxItemCount = -1, EnableCrossPartitionQuery = true };
-            return client.CreateDocumentQuery<T>(this.GetCollectionLink(collection), queryOptions);
+            if (qryOptions == null)
+                qryOptions = new FeedOptions { MaxItemCount = -1, EnableCrossPartitionQuery = true };
+
+            return client.CreateDocumentQuery<T>(this.GetCollectionLink(collection), qryOptions);
         }
 
         public Uri GetCollectionLink(string collectionName)

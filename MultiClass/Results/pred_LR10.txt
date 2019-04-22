@@ -1,0 +1,6 @@
+***************************
+Prediction results: LR10
+***************************
+Test set size: 1000
+Total correct: 717
+Perc correct : 71.7%

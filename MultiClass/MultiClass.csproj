@@ -12,6 +12,14 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="Results\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="cosmosDbKey.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

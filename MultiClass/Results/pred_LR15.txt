@@ -1,0 +1,6 @@
+***************************
+Prediction results: LR15
+***************************
+Test set size: 1000
+Total correct: 714
+Perc correct : 71.4%

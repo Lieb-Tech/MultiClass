@@ -1,0 +1,6 @@
+***************************
+Prediction results: LR20
+***************************
+Test set size: 1000
+Total correct: 715
+Perc correct : 71.5%

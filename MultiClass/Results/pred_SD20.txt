@@ -1,0 +1,6 @@
+***************************
+Prediction results: SD20
+***************************
+Test set size: 1000
+Total correct: 700
+Perc correct : 70%
