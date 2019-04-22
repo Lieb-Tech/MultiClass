@@ -1,6 +1,0 @@
-***************************
-Prediction results: SD5
-***************************
-Test set size: 1000
-Total correct: 737
-Perc correct : 73.7%

@@ -61,7 +61,7 @@ namespace MultiClass
                 {
                     var z = await docQry.ExecuteNextAsync<CosmosNewsItem>();
                     vals.AddRange(z
-                        .Where(v => !string.IsNullOrWhiteSpace(v.title) && !string.IsNullOrWhiteSpace(v.title))
+                        .Where(v => !string.IsNullOrWhiteSpace(v.description) && !string.IsNullOrWhiteSpace(v.title))
                         .Select(v => v)
                         .ToList()
                     );
