@@ -1,0 +1,6 @@
+***************************
+Prediction results: LB5
+***************************
+Test set size: 1000
+Total correct: 682
+Perc correct : 68.2%

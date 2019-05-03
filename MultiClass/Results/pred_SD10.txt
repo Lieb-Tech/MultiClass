@@ -1,0 +1,6 @@
+***************************
+Prediction results: SD10
+***************************
+Test set size: 1000
+Total correct: 702
+Perc correct : 70.2%

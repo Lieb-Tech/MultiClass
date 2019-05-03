@@ -11,8 +11,9 @@ namespace MultiClass
 {
     public class FileBuilder
     {
-        private int testAmount = 500;
+        private int testAmount = 1000;
         private int evaluateAmount = 1000;
+
         CosmosDB cdb;
         public FileBuilder(CosmosDB db)
         {

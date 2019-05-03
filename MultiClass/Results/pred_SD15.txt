@@ -1,0 +1,6 @@
+***************************
+Prediction results: SD15
+***************************
+Test set size: 1000
+Total correct: 674
+Perc correct : 67.4%

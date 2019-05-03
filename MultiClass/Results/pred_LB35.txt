@@ -1,0 +1,6 @@
+***************************
+Prediction results: LB35
+***************************
+Test set size: 1000
+Total correct: 729
+Perc correct : 72.9%

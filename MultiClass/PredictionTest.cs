@@ -23,41 +23,49 @@ namespace MultiClass
             var rawTestData = File.ReadAllLines($"{_basePath}/Data/evaluate_data.tsv");
             testDataSet = rawTestData.Select(z => z.Split('\t')).Skip(1).ToList().Where(z => z.Count() == 5).ToList();
 
+            var results = new List<string>();
             var files = Directory.GetFiles($"{_basePath}/Models", "model*.zip");
-            foreach (var file in files)
+            foreach (var file in files.OrderBy(z => z))
             {
-                runPred(file);
-            }           
+                var v = runPred(file);
+                if (v.Item1 != -1)
+                {
+                    results.Add($"{v.Item2} = {((v.Item1 * 1.0) / 1000) * 100} %");
+                }
+            }
+            File.WriteAllLines($"{_basePath}/Results/pred_all.txt", results);
         }
 
-        void runPred(string modelPath)
+        Tuple<int, string> runPred(string modelPath)
         {            
             var idx1 = modelPath.IndexOf("_") + 1;
             var idx2 = modelPath.IndexOf(".zip");
             var description = modelPath.Substring(idx1, idx2 - idx1);
 
             Console.WriteLine("Running predictions for : " + description);
-            ITransformer loadedModel;
-            using (var stream = new FileStream(modelPath, FileMode.Open, FileAccess.Read, FileShare.Read))
+            try
             {
-                loadedModel = _mlContext.Model.Load(stream);
-            }
-           
-            var _predEngine = loadedModel.CreatePredictionEngine<NewsItem, SectionPrediction>(_mlContext);
-
-            int correct = 0;
-            foreach (var t in testDataSet)
-            {
-                var result = _predEngine.Predict(new NewsItem()
+                ITransformer loadedModel;
+                using (var stream = new FileStream(modelPath, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    Title = t[3],
-                    Description = t[4],
-                });
-                if (result.Section == t[1])
-                    correct++;
-            }
+                    loadedModel = _mlContext.Model.Load(stream, out var modelInputSchema);
+                }
 
-            File.WriteAllLines($"{_basePath}/Results/pred_{description}.txt", new List<string>()
+                var _predEngine = _mlContext.Model.CreatePredictionEngine<NewsItem, SectionPrediction>(loadedModel);
+
+                int correct = 0;
+                foreach (var t in testDataSet)
+                {
+                    var result = _predEngine.Predict(new NewsItem()
+                    {
+                        Title = t[3],
+                        Description = t[4],
+                    });
+                    if (result.Section == t[1])
+                        correct++;
+                }
+
+                File.WriteAllLines($"{_basePath}/Results/pred_{description}.txt", new List<string>()
             {
                 "***************************",
                 "Prediction results: " + description,
@@ -65,7 +73,13 @@ namespace MultiClass
                 "Test set size: " + testDataSet.Count(),
                 "Total correct: " + correct,
                 "Perc correct : " + ((correct * 1.0) / testDataSet.Count()) * 100.0 + "%"
-            });            
+            });
+                return new Tuple<int, string>(correct, description);
+            }
+            catch (Exception e)
+            {
+                return new Tuple<int, string>(-1, "");
+            }
         }
     }
 }

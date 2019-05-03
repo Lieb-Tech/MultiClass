@@ -8,6 +8,7 @@ using System.Text;
 
 namespace MultiClass
 {
+    /*
     public class Testing
     {
         MLContext _mlContext;
@@ -26,7 +27,7 @@ namespace MultiClass
         private static PredictionEngine<MLNewsItem, SectionPrediction> _predEngineLR10 = null;
 
         string projectRootPath = ".";
-
+        
         public Testing()
         {
 
@@ -137,6 +138,7 @@ namespace MultiClass
             var aaz = "";
         }
     }
+    */
 
     public class TestResult
     {

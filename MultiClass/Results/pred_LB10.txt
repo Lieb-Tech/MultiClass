@@ -1,0 +1,6 @@
+***************************
+Prediction results: LB10
+***************************
+Test set size: 1000
+Total correct: 703
+Perc correct : 70.3%
